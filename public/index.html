@@ -2,6 +2,7 @@
   <head>
     <title>Roman Calculator Scores</title>
 
+    <link rel="stylesheet" href="/css/bootstrap.css" />
     <script type="text/javascript" src="/faye/client.js"></script>
     <script type="text/javascript" src="/js/angular.js"></script>
     <script type="text/javascript" src="/js/sugar.js"></script>
@@ -9,17 +10,20 @@
   </head>
 
   <body ng-app="scores">
-    <table ng-controller="ScoresController">
-      <thead>
-        <tr>
-          <th>Team Name</th>
-          <th>Team Score</th>
+    <div class="container">
+      <h1>Leaderboard</h1>
+      <table class="table table-bordered" ng-controller="ScoresController">
+        <thead>
+          <tr>
+            <th>Team Name</th>
+            <th>Team Score</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="team in teams|orderBy:'-score'">
+          <td>{{team.name}}</td>
+          <td>{{team.score}}</td>
         </tr>
-      </thead>
-      <tr ng-repeat="team in teams|orderBy:'-score'">
-        <td>{{team.name}}</td>
-        <td>{{team.score}}</td>
-      </tr>
-    </table>
+      </table>
+    </div>
   </body>
 </html>
